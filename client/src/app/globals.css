@@ -13,9 +13,11 @@
   --text: #070707;
   --subtext: #7e7e7e;
   --highlight: #615bd6;
+  --subHighlight: #23279a;
   
   /* Buttons */
   --button: #eeeeee;
+  --buttonHover: #f1eeee;
 }
 
 #root {
