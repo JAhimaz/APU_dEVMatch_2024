@@ -4,23 +4,27 @@ import React, { CSSProperties, FC, HTMLAttributes, ReactNode } from 'react';
 type TextsProps = HTMLAttributes<HTMLSpanElement> & {
   children: ReactNode;
   color?: string;
-  fontSize?: "xs" | "sm" | "md" | "lg" | "xl" | "headline";
+  fontSize?: "xxs" | "xs" | "sm" | "md" | "lg" | "xl" | "headline";
   className?: string;
   style?: CSSProperties;
   weight?: "normal" | "bold" | "semi-bold" | "light";
   italics?: boolean;
   align?: "left" | "center" | "right";
   concat?: boolean;
+  bottomSpace?: string;
+  width?: string;
 }
 
-const Texts: FC<TextsProps> = ({ children, color = "var(--text);", fontSize, className, style, weight, italics, align, concat }) => {
+const Texts: FC<TextsProps> = ({ children, color = "var(--text);", fontSize, className, style, weight, italics, align, concat, bottomSpace, width }) => {
   return (
     <span 
     className={className}
     style={{
       color, 
-      width: '100%',
-      fontSize: fontSize === "xs" ? "1rem" : // 12px
+      width: width ?? '100%',
+      fontSize: 
+                fontSize === "xxs" ? "0.75rem" : // 12px
+                fontSize === "xs" ? "1rem" : // 12px
                 fontSize === "sm" ? "1.25rem" : // 16px
                 fontSize === "md" ? "1.5rem" : // 20px
                 fontSize === "lg" ? "2rem" : // 32px
@@ -29,6 +33,7 @@ const Texts: FC<TextsProps> = ({ children, color = "var(--text);", fontSize, cla
       fontWeight: weight,
       fontStyle: italics ? "italic" : "normal",
       textAlign: align,
+      marginBottom: bottomSpace,
       ...style,
     }}
     >
