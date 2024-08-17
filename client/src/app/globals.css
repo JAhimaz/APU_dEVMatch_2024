@@ -14,6 +14,10 @@
   --subtext: #7e7e7e;
   --highlight: #615bd6;
   --subHighlight: #23279a;
+
+  --success: #4caf50;
+  --error: #f44336;
+  --warning: #ff9800;
   
   /* Buttons */
   --button: #eeeeee;

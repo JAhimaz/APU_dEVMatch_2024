@@ -1,0 +1,12 @@
+.historySect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  gap: 0.5rem;
+  overflow-y: auto;
+  padding: 0 0.25rem;
+}

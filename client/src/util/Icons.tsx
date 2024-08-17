@@ -1,8 +1,14 @@
 import { CSSProperties, FC } from 'react';
 import { FaTwitter } from 'react-icons/fa';
+import { BiSolidDonateBlood, BiLinkExternal } from "react-icons/bi";
+import { TiArrowDownThick, TiArrowUpThick } from "react-icons/ti";
 
 const IconsIndex = {
   twitter: FaTwitter,
+  donate: TiArrowUpThick,
+  accepted: BiSolidDonateBlood,
+  receive: TiArrowDownThick,
+  external: BiLinkExternal,
 };
 
 const Index = {

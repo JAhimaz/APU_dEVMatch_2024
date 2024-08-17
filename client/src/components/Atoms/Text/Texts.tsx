@@ -15,7 +15,7 @@ type TextsProps = HTMLAttributes<HTMLSpanElement> & {
   width?: string;
 }
 
-const Texts: FC<TextsProps> = ({ children, color = "var(--text);", fontSize, className, style, weight, italics, align, concat, bottomSpace, width }) => {
+const Texts: FC<TextsProps> = ({ children, color = "var(--text)", fontSize, className, style, weight, italics, align, concat, bottomSpace, width }) => {
   return (
     <span 
     className={className}
