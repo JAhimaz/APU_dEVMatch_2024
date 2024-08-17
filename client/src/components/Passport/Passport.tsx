@@ -10,6 +10,8 @@ const Passport: FC = () => {
       <Texts fontSize="sm" align="center">Blood Passport</Texts>
       <Divider />
       {/* Here we include the Selector to see History or Passport */}
+      <Texts fontSize="xs" align="left" color="var(--subtext)">Identification</Texts>
+      <Texts fontSize="sm" align="left" concat>0x6C66E1429B34F82fFe64080313AC1C008C23f0Ce</Texts>
 
     </section>
   )

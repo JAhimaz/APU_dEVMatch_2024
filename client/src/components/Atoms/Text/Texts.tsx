@@ -10,9 +10,10 @@ type TextsProps = HTMLAttributes<HTMLSpanElement> & {
   weight?: "normal" | "bold" | "semi-bold" | "light";
   italics?: boolean;
   align?: "left" | "center" | "right";
+  concat?: boolean;
 }
 
-const Texts: FC<TextsProps> = ({ children, color = "var(--text);", fontSize, className, style, weight, italics, align }) => {
+const Texts: FC<TextsProps> = ({ children, color = "var(--text);", fontSize, className, style, weight, italics, align, concat }) => {
   return (
     <span 
     className={className}
@@ -30,7 +31,9 @@ const Texts: FC<TextsProps> = ({ children, color = "var(--text);", fontSize, cla
       textAlign: align,
       ...style,
     }}
-    >{children}</span>
+    >
+      { concat && typeof children == "string" ? children.slice(0, 5) + "..." + children.slice(children.length - 5, children.length) : children}
+    </span>
   );
 }
 
