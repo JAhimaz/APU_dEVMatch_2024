@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import styles from './Passport.module.scss';
 import Texts from "../Atoms/Text/Texts";
 import Divider from "../Atoms/Divider/Divider";
@@ -10,12 +10,15 @@ import BloodType from "@/libs/BloodType";
 import History from "./History/History";
 import { useWallet } from "@aptos-labs/wallet-adapter-react";
 import QRCode from "react-qr-code";
+import CheckUser from "@/libs/@server/CheckUser";
 
 const Passport: FC = () => {
 
   const [selected, setSelected] = useState<string>("Details");
   const [userData, setUserData] = useState({
     address: "",
+    masAddress: "",
+    masId: "",
     bloodType: BloodType.AB_NEGATIVE,
     age: 24,
     weight: 82.4,
@@ -46,17 +49,36 @@ const Passport: FC = () => {
 
   const [isMetric, setIsMetric] = useState<boolean>(true);
   const [isReceiving, setIsReceiving] = useState<boolean>(false);
+  const isInitialRender = useRef(true);
 
   const { account } = useWallet();
 
   useEffect(() => {
-    if(account) {
-      setUserData({
-        ...userData,
-        address: account.address.toString()
-      })
+  
+    const UserCheck = async (address: string) => {
+      const data = await CheckUser({ address });
+      if (data._code === 200) {
+        setUserData((prevUserData) => ({
+          ...prevUserData,
+          masAddress: data.data.masAddr.toString(),
+          masId: data.data.masId.toString(),
+        }));
+      }
+    };
+  
+    if (isInitialRender.current) {
+      isInitialRender.current = false; // Skip the initial render
+      return;
     }
-  }, [userData, account])
+  
+    if (account && userData.address !== account.address.toString()) {
+      UserCheck(account.address.toString());
+      setUserData((prevUserData) => ({
+        ...prevUserData,
+        address: account.address.toString(),
+      }));
+    }
+  }, [account]);
 
   return (
     <section className={styles.passportSect}>
@@ -85,7 +107,19 @@ const Passport: FC = () => {
                 }}>
                 <QRCode value={userData.address} size={220} />
                 </div>
+                <section style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.25rem',
+                  width: '100%',
+                  height: '100%',
+                }}>
                 <Texts fontSize="sm" align="center" color="var(--subtext)" concat bottomSpace="0.25rem">{userData.address}</Texts>
+                <Texts fontSize="xxs" align="center" color="var(--subtext)" bottomSpace="0.25rem">{userData.masAddress}</Texts>
+                <Texts fontSize="xxs" align="center" color="var(--subtext)" bottomSpace="0.25rem">{userData.masId}</Texts>
+                </section>
                   <section className={styles.userDetails}>
                     <section style={{
                       display: 'flex',
@@ -137,7 +171,7 @@ const Passport: FC = () => {
           </>
         ) : 
         selected === "History" ? (
-          <History />
+          <History address={userData.masAddress} />
         ) :
         selected === "Medicals" ? (
           <section className={styles.userDetails} style={{

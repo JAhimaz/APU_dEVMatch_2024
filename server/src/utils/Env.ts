@@ -9,5 +9,7 @@ export const Env = {
   NODE_ENV: process.env.NODE_ENV,
   CLIENT_URL: process.env.CLIENT_URL,
   SERVER_URL: process.env.SERVER_URL,
-  SERVER_PORT: process.env.SERVER_PORT
+  SERVER_PORT: process.env.SERVER_PORT,
+  MAS_CLIENT_ID: process.env.MAS_CLIENT_ID,
+  MAS_CLIENT_SECRET: process.env.MAS_CLIENT_SECRET,
 }

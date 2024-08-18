@@ -15,6 +15,8 @@ import MongoStore from 'connect-mongo'
 
 // Routes
 // import Route from "@routes/Route"; // Example Route
+import CheckUser from "./routes/CheckUser";
+import GetNFTCerts from "./routes/GetNFTCerts";
 
 const app = express();
 
@@ -44,7 +46,7 @@ app.use(
       // sameSite: 'strict',
       // domain: '.reachcard.app'
     },
-    name: "session-name", // You may rename this to any session name you would like
+    name: "apudev_bldchain", // You may rename this to any session name you would like
   }),
 );
 app.use(bodyParser.json());
@@ -66,19 +68,21 @@ app.listen(port, () => {
 });
 
 // Limiters
-app.use('/api/', rateLimit({
-  // 10 requests every minute
-  windowMs: 60 * 1000,
-  max: 10,
-  message: {
-    error: {
-      status: 429,
-      message: 'Too many requests, please try again in a minute.'
-    }
-  }
-}));
+// app.use('/api/', rateLimit({
+//   // 10 requests every minute
+//   windowMs: 60 * 1000,
+//   max: 10,
+//   message: {
+//     error: {
+//       status: 429,
+//       message: 'Too many requests, please try again in a minute.'
+//     }
+//   }
+// }));
 
 // Declaration of Routes
 
 // Example Route Declaration
 // app.use("/path/to/route", Route);
+app.use("/api/check-user", CheckUser)
+app.use("/api/get-certs", GetNFTCerts);

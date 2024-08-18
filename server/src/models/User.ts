@@ -8,16 +8,16 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  email: {
+  aptosAddr: {
     type: String,
     required: false,
   },
-  password: {
+  masAddr: {
     type: String,
     required: false,
   },
-  name: {
-    type: String,
+  masId: {
+    type: Number,
     required: false,
   },
   version: {
