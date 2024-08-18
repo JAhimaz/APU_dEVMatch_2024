@@ -1,13 +1,16 @@
 import Page from '@/components/Page'
 import styles from './page.module.css'
 import Passport from '@/components/Passport/Passport'
+import WalletWrapper from '@/components/Providers/WalletProvider'
 
 export default function Home() {
   return (
     <main className={styles.main}>
-      <Page>
-        <Passport />
-      </Page>
+      <WalletWrapper>
+        <Page>
+          <Passport />
+        </Page>
+      </WalletWrapper>
     </main>
   )
 }

@@ -1,6 +1,8 @@
 .navigationBar {
-  display: none;
+  display: flex;
   position: relative;
+  width: 100%;
+  height: 60px;
 }
 
 @media (min-width: 768px) {
@@ -13,35 +15,35 @@
   }
 }
 
-.navItems {
-  width: calc(1440px - 72px);
-  margin: 0 auto;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 3rem;
-}
+// .navItems {
+//   width: calc(1440px - 72px);
+//   margin: 0 auto;
+//   display: flex;
+//   justify-content: flex-end;
+//   align-items: center;
+//   gap: 3rem;
+// }
 
-.navItem {
-  position: relative;
-  padding: 0.25rem 0;
-}
+// .navItem {
+//   position: relative;
+//   padding: 0.25rem 0;
+// }
 
-.navItem:hover .navItemText {
-  color: var(--text) !important;
-  transition: color 0.15s;
-}
+// .navItem:hover .navItemText {
+//   color: var(--text) !important;
+//   transition: color 0.15s;
+// }
 
-.pseudoNavItem {
-  position: absolute;
-  width: 0px;
-  height: 100%;
-  border-bottom: 1px solid transparent;
-  pointer-events: none;
-}
+// .pseudoNavItem {
+//   position: absolute;
+//   width: 0px;
+//   height: 100%;
+//   border-bottom: 1px solid transparent;
+//   pointer-events: none;
+// }
 
-.navItem:hover .pseudoNavItem {
-  width: 100%;
-  border-bottom: 1px solid var(--text);
-  transition: width 0.15s;
-}
+// .navItem:hover .pseudoNavItem {
+//   width: 100%;
+//   border-bottom: 1px solid var(--text);
+//   transition: width 0.15s;
+// }
